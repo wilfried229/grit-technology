@@ -149,7 +149,6 @@ const services = [
 ];
 
 const stats = [
-  { label: "Projets Déployés", value: "150+", icon: Rocket, color: "text-red-600" },
   { label: "Fiabilité Système", value: "99.9%", icon: Activity, color: "text-slate-900" },
   { label: "Experts Tech", value: "25+", icon: Users, color: "text-slate-900" },
   { label: "Solutions Sur Mesure", value: "100%", icon: CheckCircle2, color: "text-red-600" }
@@ -302,7 +301,7 @@ export default function Home() {
                 transition={{ delay: 0.6, duration: 0.8 }}
                 className="max-w-2xl text-xl font-medium text-slate-600 leading-relaxed"
               >
-                Grit Technology transforme la complexité en simplicité. 
+                Grit Technology est une startup innovante qui transforme la complexité en simplicité. 
                 Des infrastructures intelligentes pensées pour l'humain et la performance.
               </motion.p>
               
@@ -328,7 +327,7 @@ export default function Home() {
         {/* Stats Section */}
         <section className="py-24 relative bg-white border-y border-slate-100 shadow-sm">
           <div className="container px-4 md:px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
               {stats.map((stat, index) => (
                 <motion.div 
                   key={index}
