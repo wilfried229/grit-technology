@@ -32,14 +32,20 @@ import { Badge } from "@/components/ui/badge";
 import { useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 
+
+
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
-  animate: { 
-    opacity: 1, 
+  animate: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
-  }
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
 };
+
 
 const staggerContainer = {
   initial: {},
