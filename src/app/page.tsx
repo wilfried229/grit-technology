@@ -185,11 +185,11 @@ export default function Home() {
 
             {/* Desktop Nav */}
           <div className="hidden space-x-10 md:flex">
-            {["Solutions", "Mission", "Pourquoi nous ?"].map((item) => (
+            {["Solutions", "Mission", "Pourquoi nous ?", "Contact"].map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase().replace(" ?", "").replace(" ", "")}`} 
-                className="text-[11px] font-black uppercase tracking-widest text-slate-500 hover:text-red-600 transition-colors"
+                className="text-[11px] font-black uppercase tracking-widest text-slate-500 hover:text-red-600 transition-colors rounded-full px-4 py-2 hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/30 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               >
                 {item}
               </a>
@@ -197,8 +197,8 @@ export default function Home() {
           </div>
 
           <div className="hidden md:block">
-            <Button className="rounded-2xl px-8 h-12 font-black text-sm shadow-xl shadow-red-500/20 bg-red-600 hover:bg-red-700 hover:scale-105 transition-all text-white border-none">
-              Démarrer un projet
+            <Button asChild className="rounded-2xl px-8 h-12 font-black text-sm shadow-xl shadow-red-500/20 bg-red-600 hover:bg-red-700 hover:scale-105 transition-all text-white border-none">
+              <a href="#contact">Démarrer un projet</a>
             </Button>
           </div>
 
@@ -217,18 +217,20 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               className="absolute top-full left-0 mt-4 w-full rounded-[32px] border border-white bg-white/95 p-8 backdrop-blur-3xl shadow-2xl md:hidden flex flex-col gap-6"
             >
-              {["Solutions", "Mission", "Pourquoi nous ?"].map((item) => (
+              {["Solutions", "Mission", "Pourquoi nous ?", "Contact"].map((item) => (
                 <a 
                   key={item}
                   href={`#${item.toLowerCase().replace(" ?", "").replace(" ", "")}`} 
                   onClick={() => setIsMenuOpen(false)} 
-                  className="text-xl font-black text-slate-900 hover:text-red-600 transition-colors"
+                  className="text-xl font-black text-slate-900 hover:text-red-600 transition-colors rounded-2xl px-4 py-3 hover:bg-slate-50"
                 >
                   {item}
                 </a>
               ))}
               <hr className="border-slate-100" />
-              <Button className="rounded-2xl h-14 w-full font-black text-lg bg-red-600 text-white">Démarrer un projet</Button>
+              <Button asChild className="rounded-2xl h-14 w-full font-black text-lg bg-red-600 text-white">
+                <a href="#contact" onClick={() => setIsMenuOpen(false)}>Démarrer un projet</a>
+              </Button>
             </motion.div>
           )}
         </div>
@@ -317,12 +319,14 @@ export default function Home() {
                 transition={{ delay: 0.8, duration: 0.8 }}
                 className="flex flex-col gap-4 sm:flex-row sm:justify-center w-full max-w-lg"
               >
-                <Button size="xl" className="group h-16 rounded-[20px] px-10 text-lg font-black shadow-xl shadow-red-500/20 bg-red-600 hover:bg-red-700 text-white flex-1">
-                  Notre expertise
-                  <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-2" />
+                <Button asChild size="xl" className="group h-16 rounded-[20px] px-10 text-lg font-black shadow-xl shadow-red-500/20 bg-red-600 hover:bg-red-700 text-white flex-1">
+                  <a href="#solutions" className="flex items-center justify-center">
+                    Notre expertise
+                    <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-2" />
+                  </a>
                 </Button>
-                <Button size="xl" variant="outline" className="h-16 rounded-[20px] px-10 text-lg font-black border-slate-200 hover:bg-white bg-white shadow-sm flex-1 text-slate-900">
-                  Nous contacter
+                <Button asChild size="xl" variant="outline" className="h-16 rounded-[20px] px-10 text-lg font-black border-slate-200 hover:bg-white bg-white shadow-sm flex-1 text-slate-900">
+                  <a href="#contact" className="flex items-center justify-center">Nous contacter</a>
                 </Button>
               </motion.div>
 
@@ -568,12 +572,14 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-6 pt-6">
-                <Button size="xl" className="h-20 rounded-2xl px-12 text-xl font-black shadow-2xl shadow-red-500/30 bg-red-600 hover:bg-red-700 text-white group">
-                  Démarrer l'aventure
-                  <Sparkles className="ml-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
+                <Button asChild size="xl" className="h-20 rounded-2xl px-12 text-xl font-black shadow-2xl shadow-red-500/30 bg-red-600 hover:bg-red-700 text-white group">
+                  <a href="#contact" className="flex items-center justify-center">
+                    Démarrer l'aventure
+                    <Sparkles className="ml-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
+                  </a>
                 </Button>
-                <Button size="xl" variant="outline" className="h-20 rounded-2xl px-12 text-xl font-black border-slate-200 hover:bg-white bg-white shadow-sm text-slate-900">
-                  Voir nos travaux
+                <Button asChild size="xl" variant="outline" className="h-20 rounded-2xl px-12 text-xl font-black border-slate-200 hover:bg-white bg-white shadow-sm text-slate-900">
+                  <a href="#solutions" className="flex items-center justify-center">Voir nos travaux</a>
                 </Button>
               </div>
             </motion.div>
@@ -582,7 +588,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-24 relative z-10 rounded-t-[60px]">
+      <footer id="contact" className="bg-slate-900 text-white py-24 relative z-10 rounded-t-[60px] scroll-mt-32">
         <div className="container px-4 md:px-6">
           <div className="grid gap-16 md:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-8 col-span-2">
