@@ -55,8 +55,9 @@ const whyItems = [
 
 const projects = [
   { category: "Sites web", cat: "web", number: "01", title: "Plateforme vitrine corporate", description: "Refonte complète d'un site institutionnel, orientée conversion et rapidité.", thumb: "linear-gradient(135deg, #fdeded 0%, #fff 100%)" },
-  { category: "Applications", cat: "app", number: "02", title: "Application de gestion ressources humaines", description: "Outil métier sur mesure pour le suivi de paie et de stocks en temps réel.", thumb: "linear-gradient(135deg, #f3f2f0 0%, #fdeded 100%)" },
+  { category: "Applications", cat: "app", number: "02", title: "Application de gestion interne", description: "Outil métier sur mesure pour le suivi d'opérations et de stocks en temps réel.", thumb: "linear-gradient(135deg, #f3f2f0 0%, #fdeded 100%)" },
   { category: "Solutions digitales", cat: "digital", number: "03", title: "Automatisation de processus", description: "Digitalisation d'un flux métier auparavant géré manuellement, avec tableau de bord.", thumb: "linear-gradient(135deg, #fdeded 0%, #f7f6f5 100%)" },
+  { category: "Design", cat: "design", number: "04", title: "Identité visuelle & supports", description: "Charte graphique complète et déclinaisons print & digital pour une marque en croissance.", thumb: "linear-gradient(135deg, #f7f6f5 0%, #fdeded 100%)" },
   { category: "Sites web", cat: "web", number: "05", title: "Boutique en ligne", description: "Plateforme e-commerce avec gestion de catalogue et paiement intégré.", thumb: "linear-gradient(135deg, #fff 0%, #fdeded 100%)" },
   { category: "Applications", cat: "app", number: "06", title: "Application mobile de suivi", description: "App mobile pour le suivi d'interventions terrain avec notifications en temps réel.", thumb: "linear-gradient(135deg, #fdeded 0%, #f3f2f0 100%)" },
 ];
@@ -70,19 +71,6 @@ const testimonials = [
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeProjectFilter, setActiveProjectFilter] = useState("Tous");
-
-  const projectFilters = [
-    { label: "Tous", category: null },
-    { label: "Sites web", category: "web" },
-    { label: "Applications", category: "app" },
-    { label: "Solutions digitales", category: "digital" },
-  ];
-
-  const visibleProjects = projects.filter((project) => {
-    const activeFilter = projectFilters.find((filter) => filter.label === activeProjectFilter);
-    return !activeFilter?.category || project.cat === activeFilter.category;
-  });
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 12);
@@ -118,29 +106,6 @@ export default function Home() {
       <header className={isScrolled ? "grit-header scrolled" : "grit-header"}>
         <div className="wrap nav-inner">
           <a href="#top" className="grit-logo" aria-label="Grit Technologie accueil">
-            <span className="grit-logo-mark" aria-hidden="true">
-              <span className="grit-logo-orbit">
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                  <path
-                    d="M 50,10 A 40,40 0 1,1 10,50"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                  <path
-                    d="M 50,10 A 40,40 0 1,1 10,50"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <span className="grit-logo-core" />
-              </span>
-            </span>
             <span className="grit-logo-word">GRIT</span>
             <span className="grit-logo-dot">.</span>
             <span className="grit-logo-word">TECHNOLOGIE</span>
@@ -188,13 +153,13 @@ export default function Home() {
         <section className="hero" id="top">
           <div className="wrap hero-grid">
             <div>
-              <span className="hero-eyebrow">Enterprise technology & digital systems</span>
+              <span className="hero-eyebrow">Solutions technologiques & digitales</span>
               <h1 className="hero-title">
                 GRIT <span className="brand">TECHNOLOGIE</span>
               </h1>
-              <p className="hero-slogan">Des systèmes numériques conçus pour la performance, la fiabilité et la croissance durable.</p>
+              <p className="hero-slogan">Des solutions technologiques qui transforment vos ambitions en réalité.</p>
               <p className="hero-desc">
-                Grit Technologie accompagne les entreprises dans leur transformation numérique avec des solutions sur mesure en développement, infrastructure, automatisation et conseil stratégique.
+                Grit Technologie est une société spécialisée dans les solutions technologiques et numériques : développement, automation, infrastructure et accompagnement digital, pour des organisations qui veulent avancer vite et bien.
               </p>
               <div className="hero-actions">
                 <a href="#services" className="btn btn-red">
@@ -336,9 +301,9 @@ export default function Home() {
               </div>
 
               <div className="stats-row">
-                <div className="stat"><div className="num" data-count="50">10</div><div className="lbl">Projets réalisés</div></div>
-                <div className="stat"><div className="num" data-count="30">10</div><div className="lbl">Clients satisfaits</div></div>
-                <div className="stat"><div className="num" data-count="99" data-suffix="%">10</div><div className="lbl">Satisfaction</div></div>
+                <div className="stat"><div className="num" data-count="50">0</div><div className="lbl">Projets réalisés</div></div>
+                <div className="stat"><div className="num" data-count="30">0</div><div className="lbl">Clients satisfaits</div></div>
+                <div className="stat"><div className="num" data-count="99" data-suffix="%">0</div><div className="lbl">Satisfaction</div></div>
                 <div className="stat"><div className="num" data-static="24/7">24/7</div><div className="lbl">Assistance</div></div>
               </div>
             </div>
@@ -353,23 +318,16 @@ export default function Home() {
               <p>Un aperçu des types de projets que nous menons — chaque réalisation est le fruit d'un travail sur mesure.</p>
             </div>
 
-            <div className="filters reveal" role="tablist" aria-label="Filtrer les réalisations">
-              {projectFilters.map((filter) => (
-                <button
-                  type="button"
-                  className={activeProjectFilter === filter.label ? "filter-btn active" : "filter-btn"}
-                  key={filter.label}
-                  role="tab"
-                  aria-selected={activeProjectFilter === filter.label}
-                  onClick={() => setActiveProjectFilter(filter.label)}
-                >
-                  {filter.label}
-                </button>
-              ))}
+            <div className="filters reveal">
+              <button type="button" className="filter-btn active">Tous</button>
+              <button type="button" className="filter-btn">Sites web</button>
+              <button type="button" className="filter-btn">Applications</button>
+              <button type="button" className="filter-btn">Design</button>
+              <button type="button" className="filter-btn">Solutions digitales</button>
             </div>
 
             <div className="portfolio-grid reveal-stagger">
-              {visibleProjects.map((project) => (
+              {projects.map((project) => (
                 <div className="project-card" key={project.title} data-cat={project.cat}>
                   <div className="project-thumb" style={{ background: project.thumb }}>
                     <span className="project-cat">{project.category}</span>
