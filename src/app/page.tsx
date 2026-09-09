@@ -492,8 +492,8 @@ export default function Home() {
             <h4>Contact</h4>
             <ul>
               <li><a href="mailto:contact@grit-technology.com">contact@grit-technology.com</a></li>
-              <li><a href="tel:+22500000000">+225 00 00 00 00</a></li>
-              <li><a href="#">Abidjan, Côte d’Ivoire</a></li>
+              <li><a href="tel:+22896283965">+228 96 28 39 65</a></li>
+              <li><a href="#">Togo, Burkina Faso</a></li>
             </ul>
           </div>
         </div>
