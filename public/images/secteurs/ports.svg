@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="g-ports" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c1b33"/>
+      <stop offset="50%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#051329"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#g-ports)"/>
+
+  <!-- Vagues stylisées et mer -->
+  <path d="M0,350 C150,330 250,370 400,350 C550,330 650,370 800,350 L800,450 L0,450 Z" fill="#07172e" opacity="0.9"/>
+  <path d="M0,380 C180,360 280,400 450,380 C600,360 700,400 800,380 L800,450 L0,450 Z" fill="#040d1a"/>
+
+  <!-- Portique à conteneurs stylisé -->
+  <g stroke="#38bdf8" stroke-width="2.5" fill="none" opacity="0.8">
+    <line x1="260" y1="360" x2="290" y2="140"/>
+    <line x1="380" y1="360" x2="350" y2="140"/>
+    <line x1="240" y1="140" x2="520" y2="140"/>
+    <line x1="290" y1="140" x2="350" y2="140"/>
+    <line x1="280" y1="210" x2="360" y2="210"/>
+    <!-- Câbles de levage -->
+    <line x1="430" y1="140" x2="430" y2="230" stroke="#f43f5e" stroke-width="2"/>
+    <rect x="405" y="230" width="50" height="28" fill="#f43f5e" stroke="#fff" stroke-width="1.5"/>
+  </g>
+
+  <!-- Faisceaux de radar maritime et scanning OCR -->
+  <circle cx="640" cy="180" r="100" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4,6" fill="rgba(56,189,248,0.03)"/>
+  <circle cx="640" cy="180" r="50" stroke="#38bdf8" stroke-width="1" fill="none"/>
+  <line x1="640" y1="180" x2="720" y2="120" stroke="#38bdf8" stroke-width="2"/>
+  <circle cx="640" cy="180" r="6" fill="#38bdf8"/>
+
+  <rect x="36" y="32" width="220" height="34" rx="8" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+  <text x="50" y="54" fill="#7dd3fc" font-family="'Inter', sans-serif" font-weight="700" font-size="12" letter-spacing="1.5">PORTS &amp; TERMINAUX</text>
+  <text x="36" y="415" fill="rgba(255,255,255,0.7)" font-family="'Inter', sans-serif" font-weight="600" font-size="15">OCR CONTENEURS &amp; SUPERVISION PORTUAIRE</text>
+</svg>

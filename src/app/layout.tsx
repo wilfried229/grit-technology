@@ -3,10 +3,31 @@ import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Grit Technology | Technologie utile, impact visible",
-  description: "Grit Technology conçoit des systèmes plus fluides, plus sûrs et plus humains.",
+  title: "GRIT CONSULTING | Engineering Smart Infrastructure",
+  description:
+    "GRIT CONSULTING conçoit, intègre et maintient des solutions technologiques pour les infrastructures intelligentes, la mobilité, l'automatisation, les infrastructures électriques et la sûreté électronique en Afrique.",
+  keywords: [
+    "GRIT CONSULTING",
+    "smart infrastructure",
+    "ingénierie infrastructure",
+    "mobilité intelligente",
+    "péage intelligent",
+    "Free Flow",
+    "ANPR",
+    "LPR",
+    "PLC SCADA",
+    "automatisation industrielle",
+    "vidéosurveillance",
+    "contrôle d'accès",
+    "sécurité incendie",
+    "infrastructure électrique",
+    "smart city",
+    "Afrique",
+  ],
 };
 
 export default function RootLayout({
@@ -32,9 +53,16 @@ export default function RootLayout({
           data-include-search-params="true"
           data-only-in-iframe="true"
           data-debug="true"
-          data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
+          data-custom-data='{"appName": "GRIT CONSULTING", "version": "2.0.0"}'
         />
-        {children}
+        <div className="grit-page">
+          <a href="#main" className="skip-link">
+            Aller au contenu
+          </a>
+          <Navbar />
+          <main id="main">{children}</main>
+          <Footer />
+        </div>
         <VisualEditsMessenger />
       </body>
     </html>

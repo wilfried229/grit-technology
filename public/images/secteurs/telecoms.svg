@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="g-dc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1128"/>
+      <stop offset="50%" stop-color="#121f44"/>
+      <stop offset="100%" stop-color="#050814"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#g-dc)"/>
+
+  <!-- Baies serveurs datacenter en perspective -->
+  <g fill="#0b152d" stroke="#2563eb" stroke-width="1.5">
+    <polygon points="120,380 200,340 200,120 120,160"/>
+    <polygon points="200,340 300,380 300,160 200,120"/>
+
+    <polygon points="500,380 600,340 600,120 500,160"/>
+    <polygon points="600,340 680,380 680,160 600,120"/>
+  </g>
+
+  <!-- Leds serveurs clignotantes -->
+  <g fill="#22c55e">
+    <circle cx="230" cy="160" r="2.5"/><circle cx="240" cy="160" r="2.5"/><circle cx="250" cy="160" r="2.5"/>
+    <circle cx="230" cy="190" r="2.5"/><circle cx="240" cy="190" r="2.5"/><circle cx="260" cy="190" r="2.5"/>
+    <circle cx="230" cy="220" r="2.5"/><circle cx="250" cy="220" r="2.5"/><circle cx="270" cy="220" r="2.5"/>
+    <circle cx="230" cy="250" r="2.5"/><circle cx="240" cy="250" r="2.5"/><circle cx="260" cy="250" r="2.5"/>
+    <circle cx="530" cy="160" r="2.5"/><circle cx="540" cy="160" r="2.5"/><circle cx="550" cy="160" r="2.5"/>
+    <circle cx="530" cy="200" r="2.5"/><circle cx="550" cy="200" r="2.5"/>
+  </g>
+  <g fill="#38bdf8">
+    <circle cx="280" cy="160" r="2.5"/><circle cx="280" cy="220" r="2.5"/>
+    <circle cx="570" cy="180" r="2.5"/><circle cx="580" cy="240" r="2.5"/>
+  </g>
+
+  <!-- Lignes fibres optiques et connectivité centrale -->
+  <g stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.6">
+    <line x1="300" y1="260" x2="500" y2="260"/>
+    <line x1="300" y1="290" x2="500" y2="290" stroke="#a855f7"/>
+    <circle cx="400" cy="275" r="30" stroke="#38bdf8" stroke-dasharray="4,4"/>
+    <circle cx="400" cy="275" r="8" fill="#E31B23"/>
+  </g>
+
+  <rect x="36" y="32" width="230" height="34" rx="8" fill="rgba(37,99,235,0.15)" stroke="rgba(37,99,235,0.4)" stroke-width="1"/>
+  <text x="50" y="54" fill="#93c5fd" font-family="'Inter', sans-serif" font-weight="700" font-size="12" letter-spacing="1.5">TÉLÉCOMS &amp; DATACENTERS</text>
+  <text x="36" y="415" fill="rgba(255,255,255,0.7)" font-family="'Inter', sans-serif" font-weight="600" font-size="15">CONTINUITÉ ÉNERGÉTIQUE &amp; SALLES BLANCHES</text>
+</svg>

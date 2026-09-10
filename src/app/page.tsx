@@ -1,508 +1,285 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Link from "next/link";
 import {
-  ArrowRight,
-  ArrowUpRight,
-  Check,
-  ChevronRight,
-  Code2,
-  Cpu,
-  Globe,
-  Lightbulb,
-  Menu,
-  MonitorSmartphone,
-  ShieldCheck,
-  Sparkles,
-  Workflow,
-  X,
+  Car, Zap, Cpu, ShieldCheck, ArrowRight,
+  Code2, Workflow, Globe, ChevronRight,
 } from "lucide-react";
 
-const navItems = [
-  { label: "Accueil", href: "#top" },
-  { label: "À propos", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Réalisations", href: "#portfolio" },
-  { label: "Témoignages", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+const expertisesPreview = [
+  {
+    number: "01", icon: Car, title: "Mobilité intelligente",
+    desc: "Péage Free Flow, ANPR/LPR, stationnement intelligent, gestion centralisée des recettes.",
+  },
+  {
+    number: "02", icon: Zap, title: "Infrastructures électriques",
+    desc: "CFO/CFA, distribution BT, onduleurs, groupes électrogènes, photovoltaïque.",
+  },
+  {
+    number: "03", icon: Cpu, title: "Automatisation & Supervision",
+    desc: "PLC / SCADA, contrôle-commande, télégestion, monitoring et hypervision.",
+  },
+  {
+    number: "04", icon: ShieldCheck, title: "Sûreté & Sécurité incendie",
+    desc: "Vidéosurveillance IP, contrôle d'accès biométrique, détection incendie adressable.",
+  },
 ];
 
-const valueCards = [
-  { title: "Innovation", description: "Nous explorons les technologies pertinentes pour proposer des solutions réellement adaptées, pas juste à la mode.", icon: Lightbulb },
-  { title: "Excellence", description: "Chaque livrable est pensé pour durer : code propre, architecture solide, documentation claire.", icon: Sparkles },
-  { title: "Fiabilité", description: "Des engagements tenus, des délais respectés, une communication claire du premier au dernier jour.", icon: ShieldCheck },
-  { title: "Satisfaction client", description: "Nous mesurons notre réussite à la vôtre : un accompagnement qui continue après la mise en production.", icon: Check },
-];
-
-const serviceCards = [
-  { number: "01", title: "Développement web", description: "Sites vitrines, plateformes et applications web performantes et évolutives.", meta: "Web", icon: Code2 },
-  { number: "02", title: "Développement d'applications", description: "Applications mobiles et métiers conçues autour de vos usages réels.", meta: "Mobile & SaaS", icon: MonitorSmartphone },
-  { number: "03", title: "Solutions digitales", description: "Digitalisation de vos processus internes et de votre relation client.", meta: "Transformation", icon: Globe },
-  { number: "04", title: "Automation", description: "Automatisation des tâches répétitives pour gagner du temps et réduire les erreurs.", meta: "Workflow", icon: Workflow },
-  { number: "05", title: "Infographie et design", description: "Identité visuelle et supports graphiques cohérents avec votre image de marque.", meta: "Branding", icon: Sparkles },
-  { number: "06", title: "Maintenance informatique", description: "Suivi technique régulier pour garder vos systèmes stables et à jour.", meta: "Support", icon: ShieldCheck },
-  { number: "07", title: "Réseaux et systèmes", description: "Conception et sécurisation d'infrastructures réseau adaptées à votre taille.", meta: "Infrastructure", icon: Cpu },
-  { number: "08", title: "Conseil technologique et audit", description: "Diagnostic indépendant de votre existant et recommandations concrètes.", meta: "Stratégie", icon: Lightbulb },
-];
-
-const whyItems = [
-  "Solutions sur mesure",
-  "Technologies modernes",
-  "Équipe professionnelle",
-  "Respect des délais",
-  "Excellent rapport qualité/prix",
-];
-
-const projects = [
-  { category: "Sites web", cat: "web", number: "01", title: "Plateforme vitrine corporate", description: "Refonte complète d'un site institutionnel, orientée conversion et rapidité.", thumb: "linear-gradient(135deg, #fdeded 0%, #fff 100%)" },
-  { category: "Applications", cat: "app", number: "02", title: "Application de gestion ressources humaines", description: "Outil métier sur mesure pour le suivi de paie et de stocks en temps réel.", thumb: "linear-gradient(135deg, #f3f2f0 0%, #fdeded 100%)" },
-  { category: "Solutions digitales", cat: "digital", number: "03", title: "Automatisation de processus", description: "Digitalisation d'un flux métier auparavant géré manuellement, avec tableau de bord.", thumb: "linear-gradient(135deg, #fdeded 0%, #f7f6f5 100%)" },
-  { category: "Sites web", cat: "web", number: "05", title: "Boutique en ligne", description: "Plateforme e-commerce avec gestion de catalogue et paiement intégré.", thumb: "linear-gradient(135deg, #fff 0%, #fdeded 100%)" },
-  { category: "Applications", cat: "app", number: "06", title: "Application mobile de suivi", description: "App mobile pour le suivi d'interventions terrain avec notifications en temps réel.", thumb: "linear-gradient(135deg, #fdeded 0%, #f3f2f0 100%)" },
-];
-
-const testimonials = [
-  { name: "A. Koffi", initials: "AK", role: "Directrice, secteur commerce", quote: "Une équipe réactive qui a bien compris nos contraintes. Le projet a été livré dans les temps, avec un vrai suivi après la mise en ligne." },
-  { name: "M. Dossou", initials: "MD", role: "Responsable IT, PME industrielle", quote: "Grit Technologie a pris le temps de comprendre notre activité avant de proposer une solution. Le résultat est simple à utiliser et solide techniquement." },
-  { name: "C. Bada", initials: "CB", role: "Coordinateur digital, organisation non lucrative", quote: "La qualité du conseil et de l’exécution nous a vraiment rassuré. Nous avons eu une vraie relation de confiance, étape par étape." },
+const secteurs = [
+  "Routes & Autoroutes", "Parkings", "Smart Cities", "Administrations publiques",
+  "Banques", "Industrie", "Mines", "Hôpitaux",
 ];
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeProjectFilter, setActiveProjectFilter] = useState("Tous");
-
-  const projectFilters = [
-    { label: "Tous", category: null },
-    { label: "Sites web", category: "web" },
-    { label: "Applications", category: "app" },
-    { label: "Solutions digitales", category: "digital" },
-  ];
-
-  const visibleProjects = projects.filter((project) => {
-    const activeFilter = projectFilters.find((filter) => filter.label === activeProjectFilter);
-    return !activeFilter?.category || project.cat === activeFilter.category;
-  });
-
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-
     const revealItems = document.querySelectorAll(".reveal, .reveal-stagger");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
+          if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       },
-      { threshold: 0.15 },
+      { threshold: 0.12 },
     );
-
     revealItems.forEach((item) => observer.observe(item));
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="grit-page">
-      <a href="#main" className="skip-link">
-        Aller au contenu
-      </a>
+    <>
+      {/* ════════════════════════════════════════
+          HERO — PLEIN ÉCRAN
+      ════════════════════════════════════════ */}
+      <section className="hero" id="top" style={{ background: "linear-gradient(160deg, #060d1f 0%, #0f1e3a 60%, #0a1628 100%)", position: "relative", overflow: "hidden" }}>
+        {/* Réseau tech SVG */}
+        <svg
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.18 }}
+          viewBox="0 0 1200 700" fill="none" preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Grille de circuits */}
+          <line x1="0" y1="200" x2="1200" y2="200" stroke="#E31B23" strokeWidth="0.5" />
+          <line x1="0" y1="400" x2="1200" y2="400" stroke="#4a90d9" strokeWidth="0.5" />
+          <line x1="0" y1="600" x2="1200" y2="600" stroke="#E31B23" strokeWidth="0.5" />
+          <line x1="200" y1="0" x2="200" y2="700" stroke="#4a90d9" strokeWidth="0.5" />
+          <line x1="500" y1="0" x2="500" y2="700" stroke="#E31B23" strokeWidth="0.5" />
+          <line x1="800" y1="0" x2="800" y2="700" stroke="#4a90d9" strokeWidth="0.5" />
+          <line x1="1100" y1="0" x2="1100" y2="700" stroke="#E31B23" strokeWidth="0.5" />
+          {/* Noeuds */}
+          {[[200,200],[500,200],[800,200],[1100,200],[200,400],[500,400],[800,400],[1100,400],[200,600],[500,600],[800,600]].map(([cx,cy],i) => (
+            <circle key={i} cx={cx} cy={cy} r="5" fill="#E31B23" opacity="0.8" />
+          ))}
+          {/* Lignes diagonales */}
+          <line x1="200" y1="200" x2="500" y2="400" stroke="#E31B23" strokeWidth="1" opacity="0.6" />
+          <line x1="500" y1="200" x2="800" y2="400" stroke="#4a90d9" strokeWidth="1" opacity="0.6" />
+          <line x1="800" y1="200" x2="1100" y2="400" stroke="#E31B23" strokeWidth="1" opacity="0.6" />
+          <line x1="200" y1="400" x2="500" y2="600" stroke="#4a90d9" strokeWidth="1" opacity="0.6" />
+          <line x1="500" y1="400" x2="800" y2="600" stroke="#E31B23" strokeWidth="1" opacity="0.6" />
+          {/* Cercle décoratif */}
+          <circle cx="900" cy="140" r="120" stroke="#E31B23" strokeWidth="1" opacity="0.3" />
+          <circle cx="900" cy="140" r="80" stroke="#4a90d9" strokeWidth="0.8" opacity="0.2" />
+          <circle cx="900" cy="140" r="6" fill="#E31B23" opacity="0.9" />
+        </svg>
 
-      <header className={isScrolled ? "grit-header scrolled" : "grit-header"}>
-        <div className="wrap nav-inner">
-          <a href="#top" className="grit-logo" aria-label="Grit Technologie accueil">
-            <span className="grit-logo-mark" aria-hidden="true">
-              <span className="grit-logo-orbit">
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                  <path
-                    d="M 50,10 A 40,40 0 1,1 10,50"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                  <path
-                    d="M 50,10 A 40,40 0 1,1 10,50"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <span className="grit-logo-core" />
-              </span>
+        <div className="wrap hero-grid" style={{ position: "relative", zIndex: 2 }}>
+          <div>
+            <span className="hero-eyebrow" style={{ background: "rgba(227,27,35,0.15)", borderColor: "rgba(227,27,35,0.3)", color: "#ff6b6b" }}>
+              Engineering Smart Infrastructure
             </span>
-            <span className="grit-logo-word">GRIT</span>
-            <span className="grit-logo-dot">.</span>
-            <span className="grit-logo-word">TECHNOLOGIE</span>
-          </a>
-
-          <nav className="links" aria-label="Navigation principale">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="nav-right">
-            <a href="#contact" className="btn btn-red btn-sm">
-              Demander un devis
-            </a>
-            <button
-              type="button"
-              className={isMenuOpen ? "menu-btn open" : "menu-btn"}
-              id="menuBtn"
-              aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              onClick={() => setIsMenuOpen((prev) => !prev)}
-            >
-              <span />
-              <span />
-              <span />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <div className={isMenuOpen ? "mobile-nav open" : "mobile-nav"} id="mobileNav">
-        {navItems.map((item) => (
-          <a key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)}>
-            {item.label}
-          </a>
-        ))}
-        <a href="#contact" className="btn btn-red btn-sm" onClick={() => setIsMenuOpen(false)}>
-          Demander un devis
-        </a>
-      </div>
-
-      <main id="main">
-        <section className="hero" id="top">
-          <div className="wrap hero-grid">
-            <div>
-              <span className="hero-eyebrow">Enterprise technology & digital systems</span>
-              <h1 className="hero-title">
-                GRIT <span className="brand">TECHNOLOGIE</span>
-              </h1>
-              <p className="hero-slogan">Des systèmes numériques conçus pour la performance, la fiabilité et la croissance durable.</p>
-              <p className="hero-desc">
-                Grit Technologie accompagne les entreprises dans leur transformation numérique avec des solutions sur mesure en développement, infrastructure, automatisation et conseil stratégique.
-              </p>
-              <div className="hero-actions">
-                <a href="#services" className="btn btn-red">
-                  Découvrir nos services
-                </a>
-                <a href="#contact" className="btn btn-outline">
-                  Nous contacter
-                </a>
-              </div>
-            </div>
-
-            <div className="hero-visual" aria-label="Illustration de services techniques">
-              <svg className="rings" viewBox="0 0 500 460" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="250" cy="230" r="170" stroke="#ECEBE9" strokeWidth="1.5" />
-                <circle cx="250" cy="230" r="120" stroke="#ECEBE9" strokeWidth="1.5" />
-                <circle cx="250" cy="230" r="6" fill="#E31B23" />
-                <path d="M250 110 L340 180 L340 300 L250 350 L160 300 L160 180 Z" stroke="#E31B23" strokeWidth="1.4" fill="none" opacity="0.5" />
-                <circle cx="250" cy="110" r="4" fill="#171717" />
-                <circle cx="340" cy="180" r="4" fill="#171717" />
-                <circle cx="340" cy="300" r="4" fill="#171717" />
-                <circle cx="250" cy="350" r="4" fill="#171717" />
-                <circle cx="160" cy="300" r="4" fill="#171717" />
-                <circle cx="160" cy="180" r="4" fill="#171717" />
-              </svg>
-
-              <div className="card-float card-a">
-                <div className="ic">
-                  <ShieldCheck size={20} />
-                </div>
-                <div>
-                  <div className="t1">Infrastructure</div>
-                  <div className="t2">Réseaux & systèmes</div>
-                </div>
-              </div>
-
-              <div className="card-float card-b">
-                <div className="ic">
-                  <Code2 size={20} />
-                </div>
-                <div>
-                  <div className="t1">Développement</div>
-                  <div className="t2">Web & applications</div>
-                </div>
-              </div>
-
-              <div className="card-float card-c">
-                <div className="ic">
-                  <Workflow size={20} />
-                </div>
-                <div>
-                  <div className="t1">Automation</div>
-                  <div className="t2">Processus optimisés</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="about">
-          <div className="wrap about-grid">
-            <div className="about-text reveal">
-              <span className="section-tag">À propos</span>
-              <h2>Votre partenaire technologique</h2>
-              <p>
-                Grit Technologie accompagne les organisations dans leur transformation numérique, avec une conviction simple : la technologie doit servir des objectifs concrets, pas l'inverse.
-              </p>
-              <p>
-                Notre équipe conçoit des solutions sur mesure — du développement logiciel à l'infrastructure réseau — en gardant toujours en vue la fiabilité, la sécurité et la capacité à grandir dans la durée.
-              </p>
-            </div>
-
-            <div className="value-grid reveal-stagger reveal">
-              {valueCards.map(({ title, description, icon: Icon }) => (
-                <div className="value-card" key={title}>
-                  <div className="ic">
-                    <Icon size={18} />
-                  </div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="services" id="services">
-          <div className="wrap">
-            <div className="section-head center reveal">
-              <span className="section-tag" style={{ justifyContent: "center" }}>Nos services</span>
-              <h2>Des solutions technologiques complètes</h2>
-              <p>De la conception à la maintenance, une offre pensée pour couvrir l'ensemble de vos besoins technologiques.</p>
-            </div>
-
-            <div className="service-grid reveal-stagger reveal">
-              {serviceCards.map(({ number, title, description, meta, icon: Icon }) => (
-                <div className="service-card" key={title}>
-                  <div className="ic">
-                    <Icon size={18} />
-                  </div>
-                  <div className="service-index">{number}</div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                  <span className="service-meta">{meta}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="why">
-          <div className="wrap why-grid">
-            <div className="why-visual reveal" aria-hidden="true">
-              <svg viewBox="0 0 300 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="150" cy="120" r="70" stroke="#E31B23" strokeWidth="1.5" opacity="0.6" />
-                <circle cx="150" cy="120" r="40" stroke="#ffffff" strokeWidth="1.5" opacity="0.4" />
-                <circle cx="150" cy="120" r="6" fill="#E31B23" />
-                <path d="M40 260 L110 220 L170 260 L260 200" stroke="#ffffff" strokeWidth="1.5" opacity="0.5" />
-                <circle cx="40" cy="260" r="5" fill="#fff" />
-                <circle cx="110" cy="220" r="5" fill="#fff" />
-                <circle cx="170" cy="260" r="5" fill="#fff" />
-                <circle cx="260" cy="200" r="5" fill="#E31B23" />
-              </svg>
-            </div>
-
-            <div>
-              <span className="section-tag">Pourquoi nous choisir</span>
-              <h2>Pourquoi choisir Grit Technologie ?</h2>
-              <div className="why-list">
-                {whyItems.map((label) => (
-                  <div className="why-item" key={label}>
-                    <div className="check">
-                      <svg viewBox="0 0 24 24" fill="none" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </div>
-                    <span className="label">{label}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="stats-row">
-                <div className="stat"><div className="num" data-count="50">10</div><div className="lbl">Projets réalisés</div></div>
-                <div className="stat"><div className="num" data-count="30">10</div><div className="lbl">Clients satisfaits</div></div>
-                <div className="stat"><div className="num" data-count="99" data-suffix="%">10</div><div className="lbl">Satisfaction</div></div>
-                <div className="stat"><div className="num" data-static="24/7">24/7</div><div className="lbl">Assistance</div></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="portfolio">
-          <div className="wrap">
-            <div className="section-head center reveal">
-              <span className="section-tag" style={{ justifyContent: "center" }}>Nos réalisations</span>
-              <h2>Des projets, des résultats concrets</h2>
-              <p>Un aperçu des types de projets que nous menons — chaque réalisation est le fruit d'un travail sur mesure.</p>
-            </div>
-
-            <div className="filters reveal" role="tablist" aria-label="Filtrer les réalisations">
-              {projectFilters.map((filter) => (
-                <button
-                  type="button"
-                  className={activeProjectFilter === filter.label ? "filter-btn active" : "filter-btn"}
-                  key={filter.label}
-                  role="tab"
-                  aria-selected={activeProjectFilter === filter.label}
-                  onClick={() => setActiveProjectFilter(filter.label)}
-                >
-                  {filter.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="portfolio-grid reveal-stagger">
-              {visibleProjects.map((project) => (
-                <div className="project-card" key={project.title} data-cat={project.cat}>
-                  <div className="project-thumb" style={{ background: project.thumb }}>
-                    <span className="project-cat">{project.category}</span>
-                    <span className="mono">{project.number}</span>
-                  </div>
-                  <div className="project-body">
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <a href="#contact" className="project-link">
-                      Voir le projet
-                      <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="testimonials" id="testimonials">
-          <div className="wrap">
-            <div className="section-head center reveal">
-              <span className="section-tag" style={{ justifyContent: "center" }}>Témoignages</span>
-              <h2>Ce que nos clients en disent</h2>
-              <p>Exemples de retours clients — à personnaliser avec vos propres témoignages.</p>
-            </div>
-
-            <div className="testi-grid reveal-stagger reveal">
-              {testimonials.map((item) => (
-                <div className="testi-card" key={item.name}>
-                  <div className="stars">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <svg key={`${item.name}-${index}`} viewBox="0 0 20 20">
-                        <path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="testi-text">« {item.quote} »</p>
-                  <div className="testi-person">
-                    <div className="avatar">{item.initials}</div>
-                    <div>
-                      <div className="name">{item.name}</div>
-                      <div className="role">{item.role}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="contact-section">
-          <div className="wrap">
-            <div className="contact-panel">
-              <div>
-                <span className="section-tag" style={{ color: "#ffe2d9" }}>Un projet en tête ?</span>
-                <h2>
-                  Faisons-le <span className="brand-light">avancer.</span>
-                </h2>
-              </div>
-
-              <div className="contact-copy">
-                <p>
-                  Parlez-nous de votre enjeu. Une première discussion peut clarifier le bon cap et débloquer votre prochaine étape.
-                </p>
-                <a href="mailto:contact@grit-technology.com" className="contact-link">
-                  contact@grit-technology.com
-                  <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer>
-        <div className="wrap footer-grid">
-          <div>
-            <div className="grit-logo footer-logo">
-              <span className="grit-logo-word">GRIT</span>
-              <span className="grit-logo-dot">.</span>
-              <span className="grit-logo-word">TECHNOLOGIE</span>
-            </div>
-            <p className="foot-desc">
-              Grit Technologie accompagne les organisations dans la conception et la mise en place de solutions numériques efficaces, durables et orientées résultats.
+            <h1 className="hero-title" style={{ color: "#ffffff" }}>
+              Construisons les{" "}
+              <span style={{ color: "#E31B23" }}>infrastructures intelligentes</span>{" "}
+              de demain.
+            </h1>
+            <p className="hero-slogan" style={{ color: "rgba(255,255,255,0.85)" }}>
+              Engineering Smart Infrastructure
             </p>
-            <div className="footer-social">
-              <a href="#" aria-label="LinkedIn">
-                <ArrowUpRight size={14} />
-              </a>
-              <a href="#" aria-label="X">
-                <ArrowRight size={14} />
-              </a>
+            <p className="hero-desc" style={{ color: "rgba(255,255,255,0.6)" }}>
+              Nous concevons, intégrons et maintenons des solutions technologiques fiables pour les
+              infrastructures critiques, les bâtiments et les systèmes de mobilité intelligente.
+            </p>
+            <div className="hero-actions">
+              <Link href="/expertises" className="btn btn-red">
+                Découvrir nos solutions
+                <ArrowRight size={16} />
+              </Link>
+              <Link href="/contact" className="btn btn-ghost">
+                Parler de votre projet
+              </Link>
             </div>
           </div>
 
-          <div>
-            <h4>Navigation</h4>
-            <ul>
-              {navItems.slice(0, 3).map((item) => (
-                <li key={item.href}><a href={item.href}>{item.label}</a></li>
+          <div className="hero-visual" aria-hidden="true">
+            <svg className="rings" viewBox="0 0 500 460" fill="none">
+              <circle cx="250" cy="230" r="170" stroke="rgba(227,27,35,0.2)" strokeWidth="1.5" />
+              <circle cx="250" cy="230" r="120" stroke="rgba(74,144,217,0.2)" strokeWidth="1.5" />
+              <circle cx="250" cy="230" r="70" stroke="rgba(227,27,35,0.15)" strokeWidth="1" />
+              <circle cx="250" cy="230" r="7" fill="#E31B23" />
+              <path d="M250 60 L390 150 L390 320 L250 400 L110 320 L110 150 Z" stroke="#E31B23" strokeWidth="1.2" fill="none" opacity="0.35" />
+              {[[250,60],[390,150],[390,320],[250,400],[110,320],[110,150]].map(([cx,cy],i) => (
+                <circle key={i} cx={cx} cy={cy} r="5" fill="rgba(227,27,35,0.7)" />
               ))}
-            </ul>
-          </div>
+            </svg>
 
-          <div>
-            <h4>Expertises</h4>
-            <ul>
-              <li><a href="#services">Développement web</a></li>
-              <li><a href="#services">Applications</a></li>
-              <li><a href="#services">Automation</a></li>
-              <li><a href="#services">Infrastructure</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="mailto:contact@grit-technology.com">contact@grit-technology.com</a></li>
-              <li><a href="tel:+22896283965">+228 96 28 39 65</a></li>
-              <li><a href="#">Togo, Burkina Faso</a></li>
-            </ul>
+            <div className="card-float card-a" style={{ background: "rgba(6,13,31,0.85)", border: "1px solid rgba(227,27,35,0.3)", color: "#fff" }}>
+              <div className="ic" style={{ background: "rgba(227,27,35,0.2)", color: "#E31B23" }}><Car size={20} /></div>
+              <div>
+                <div className="t1" style={{ color: "#fff" }}>Mobilité</div>
+                <div className="t2" style={{ color: "rgba(255,255,255,0.5)" }}>Free Flow & ANPR</div>
+              </div>
+            </div>
+            <div className="card-float card-b" style={{ background: "rgba(6,13,31,0.85)", border: "1px solid rgba(74,144,217,0.3)", color: "#fff" }}>
+              <div className="ic" style={{ background: "rgba(74,144,217,0.15)", color: "#4a90d9" }}><Cpu size={20} /></div>
+              <div>
+                <div className="t1" style={{ color: "#fff" }}>PLC / SCADA</div>
+                <div className="t2" style={{ color: "rgba(255,255,255,0.5)" }}>Automatisation</div>
+              </div>
+            </div>
+            <div className="card-float card-c" style={{ background: "rgba(6,13,31,0.85)", border: "1px solid rgba(227,27,35,0.3)", color: "#fff" }}>
+              <div className="ic" style={{ background: "rgba(227,27,35,0.2)", color: "#E31B23" }}><ShieldCheck size={20} /></div>
+              <div>
+                <div className="t1" style={{ color: "#fff" }}>Sûreté</div>
+                <div className="t2" style={{ color: "rgba(255,255,255,0.5)" }}>Sécurité incendie</div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div className="wrap footer-bottom">
-          <span>© {new Date().getFullYear()} Grit Technologie</span>
-          <span>Tous droits réservés</span>
+      {/* ════════════════════════════════════════
+          QUI SOMMES-NOUS
+      ════════════════════════════════════════ */}
+      <section id="about" style={{ background: "#fff" }}>
+        <div className="wrap about-consulting-grid">
+          <div className="about-consulting-text reveal">
+            <span className="section-tag">Qui sommes-nous</span>
+            <h2>L'ingénierie technologique au service de la performance</h2>
+            <p>
+              GRIT CONSULTING est une société d'ingénierie et d'intégration technologique spécialisée
+              dans les infrastructures intelligentes, la mobilité et les systèmes de sûreté électronique
+              en Afrique.
+            </p>
+            <p>
+              Nous accompagnons les organisations publiques et privées dans la{" "}
+              <strong>conception</strong>, le <strong>déploiement</strong>, l'<strong>intégration</strong>{" "}
+              et la <strong>maintenance</strong> de solutions technologiques fiables, adaptées aux réalités
+              opérationnelles du terrain.
+            </p>
+            <div style={{ marginTop: "32px" }}>
+              <Link href="/a-propos" className="btn btn-red">
+                En savoir plus sur GRIT CONSULTING
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+
+          <div className="about-visual-box reveal">
+            <div className="about-visual-tags">
+              <span className="about-tag" style={{ top: "12%", left: "8%" }}>🏗️ Conception</span>
+              <span className="about-tag" style={{ top: "30%", right: "6%" }}>⚡ Déploiement</span>
+              <span className="about-tag" style={{ top: "55%", left: "4%" }}>🔗 Intégration</span>
+              <span className="about-tag" style={{ bottom: "14%", right: "10%" }}>🛠️ Maintenance</span>
+              <span className="about-tag" style={{ top: "72%", left: "28%" }}>🏙️ Smart City</span>
+            </div>
+            <svg viewBox="0 0 300 280" fill="none" style={{ width: "220px", opacity: 0.6 }}>
+              <circle cx="150" cy="140" r="100" stroke="#E31B23" strokeWidth="1.5" opacity="0.4" />
+              <circle cx="150" cy="140" r="60" stroke="#0f1e3a" strokeWidth="1.5" opacity="0.3" />
+              <circle cx="150" cy="140" r="20" fill="#E31B23" opacity="0.15" />
+              <circle cx="150" cy="140" r="8" fill="#E31B23" />
+              <line x1="150" y1="40" x2="150" y2="140" stroke="#E31B23" strokeWidth="1.5" opacity="0.5" />
+              <line x1="150" y1="140" x2="238" y2="190" stroke="#0f1e3a" strokeWidth="1.5" opacity="0.5" />
+              <line x1="150" y1="140" x2="62" y2="190" stroke="#E31B23" strokeWidth="1.5" opacity="0.5" />
+              <circle cx="150" cy="40" r="5" fill="#E31B23" />
+              <circle cx="238" cy="190" r="5" fill="#0f1e3a" />
+              <circle cx="62" cy="190" r="5" fill="#E31B23" />
+            </svg>
+          </div>
         </div>
-      </footer>
-    </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          EXPERTISES APERÇU
+      ════════════════════════════════════════ */}
+      <section style={{ background: "var(--gray-50)" }}>
+        <div className="wrap">
+          <div className="section-head center reveal">
+            <span className="section-tag" style={{ justifyContent: "center" }}>Nos expertises</span>
+            <h2>Des solutions technologiques conçues pour les infrastructures modernes</h2>
+            <p>Quatre domaines d'expertise complémentaires pour répondre à l'ensemble de vos enjeux.</p>
+          </div>
+
+          <div className="expertise-grid reveal-stagger reveal">
+            {expertisesPreview.map(({ number, icon: Icon, title, desc }) => (
+              <div className="expertise-card" key={title}>
+                <span className="card-number">{number}</span>
+                <div className="ic-wrap"><Icon size={22} /></div>
+                <h3>{title}</h3>
+                <p style={{ color: "var(--muted)", fontSize: "0.95rem", lineHeight: 1.65 }}>{desc}</p>
+                <Link href="/expertises" className="expertise-card-cta">
+                  Découvrir <ChevronRight size={14} />
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: "44px" }}>
+            <Link href="/expertises" className="btn btn-outline">
+              Voir toutes nos expertises <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          SECTEURS APERÇU
+      ════════════════════════════════════════ */}
+      <section style={{ background: "#fff" }}>
+        <div className="wrap">
+          <div className="section-head center reveal">
+            <span className="section-tag" style={{ justifyContent: "center" }}>Secteurs d'intervention</span>
+            <h2>Des solutions pour les secteurs stratégiques</h2>
+          </div>
+          <div className="secteurs-grid reveal-stagger reveal">
+            {secteurs.map((s) => (
+              <div className="secteur-card-mini" key={s}>
+                <div className="secteur-icon">
+                  <Globe size={20} />
+                </div>
+                <div className="secteur-label">{s}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: "36px" }}>
+            <Link href="/secteurs" className="btn btn-outline">
+              Voir tous les secteurs <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          CTA DARK
+      ════════════════════════════════════════ */}
+      <section className="cta-dark">
+        <div className="wrap cta-dark-inner reveal">
+          <span className="section-tag" style={{ justifyContent: "center", color: "rgba(227,27,35,0.8)" }}>
+            Un projet d'infrastructure intelligente ?
+          </span>
+          <h2>Construisons ensemble votre solution.</h2>
+          <p>
+            Parlons de vos besoins et construisons ensemble une solution adaptée à vos enjeux opérationnels.
+          </p>
+          <div className="cta-dark-actions">
+            <Link href="/contact" className="btn btn-red">
+              Démarrer une discussion <ArrowRight size={16} />
+            </Link>
+            <Link href="/contact" className="btn btn-ghost">
+              Nous contacter
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

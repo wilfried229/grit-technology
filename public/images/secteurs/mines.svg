@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="g-mines" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141e30"/>
+      <stop offset="50%" stop-color="#243b55"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="accent-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#g-mines)"/>
+  
+  <!-- Contours topographiques mines et carrières -->
+  <path d="M-50,380 Q180,260 400,320 T850,280 L850,450 L-50,450 Z" fill="#1e293b" opacity="0.9"/>
+  <path d="M-50,400 Q220,310 460,370 T850,330 L850,450 L-50,450 Z" fill="#0f172a"/>
+  <path d="M0,280 Q250,180 520,240 T800,200" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,6" fill="none" opacity="0.4"/>
+  <path d="M0,230 Q280,140 550,190 T800,160" stroke="#E31B23" stroke-width="1.5" stroke-dasharray="3,5" fill="none" opacity="0.3"/>
+  
+  <!-- Grille technologique et capteurs -->
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="450"/>
+    <line x1="300" y1="0" x2="300" y2="450"/>
+    <line x1="500" y1="0" x2="500" y2="450"/>
+    <line x1="700" y1="0" x2="700" y2="450"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="240" x2="800" y2="240"/>
+  </g>
+
+  <!-- Illustration centrale : Pesage, Extraction & Énergie -->
+  <g transform="translate(400, 180)">
+    <circle cx="0" cy="0" r="85" fill="rgba(245,158,11,0.08)" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <circle cx="0" cy="0" r="55" fill="rgba(15,23,42,0.8)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    <!-- Pickaxe & Gear icon SVG -->
+    <path d="M-22,-20 L22,24 M-14,-28 L28,14 M-28,-14 L14,28" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="14" fill="#E31B23"/>
+  </g>
+
+  <!-- Balises IoT et télémétrie -->
+  <g fill="#f59e0b">
+    <circle cx="180" cy="220" r="4"/><circle cx="180" cy="220" r="12" fill="none" stroke="#f59e0b" opacity="0.5"/>
+    <circle cx="620" cy="180" r="4"/><circle cx="620" cy="180" r="12" fill="none" stroke="#f59e0b" opacity="0.5"/>
+    <circle cx="320" cy="140" r="4"/><circle cx="320" cy="140" r="12" fill="none" stroke="#E31B23" opacity="0.5"/>
+  </g>
+
+  <!-- Badge texte -->
+  <rect x="36" y="32" width="230" height="34" rx="8" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1"/>
+  <text x="50" y="54" fill="#fcd34d" font-family="'Inter', sans-serif" font-weight="700" font-size="12" letter-spacing="1.5">MINES &amp; CARRIÈRES</text>
+  <text x="36" y="415" fill="rgba(255,255,255,0.7)" font-family="'Inter', sans-serif" font-weight="600" font-size="15">AUTOMATISMES DURCIS &amp; PESAGE DYNAMIQUE</text>
+</svg>
