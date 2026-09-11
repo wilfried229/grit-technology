@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={isScrolled ? "grit-header scrolled" : "grit-header"}>
+      <header className={isScrolled ? "grit-header scrolled" : pathname === "/" ? "grit-header home-header" : "grit-header"}>
         <div className="wrap nav-inner">
           {/* LOGO */}
           <Link href="/" className="grit-logo" aria-label="GRIT CONSULTING accueil">
