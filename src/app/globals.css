@@ -85,7 +85,7 @@
   --shadow-md: 0 20px 40px rgba(15, 23, 42, 0.12);
   --radius: 16px;
   --radius-sm: 10px;
-  --maxw: 1200px;
+  --maxw: 1400px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -154,7 +154,7 @@ section { padding: 110px 0; }
 .grit-logo-core { position: absolute; left: 37.5%; top: 37.5%; width: 25%; height: 25%; border-radius: 50%; background: var(--red); }
 .grit-logo-word { letter-spacing: -0.04em; }
 .grit-logo-dot { color: var(--red); }
-.links { display: flex; gap: 32px; }
+.links { display: flex; flex: 1; justify-content: space-between; gap: 16px; margin: 0 32px; }
 .links a { color: rgba(15,23,42,0.8); font-weight: 600; font-size: 0.9rem; position: relative; letter-spacing: -0.01em; }
 .home-header:not(.scrolled) .links a { color: rgba(255,255,255,0.9); }
 .links a::after { content: ""; position: absolute; left: 0; bottom: -7px; width: 0; height: 2px; background: var(--red); transition: width .25s ease; }
