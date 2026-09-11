@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import logoImage from "../../affiche_grit_technologie_v2.png";
 
 const navItems = [
   { label: "Accueil", href: "/" },
@@ -37,24 +39,7 @@ export default function Navbar() {
         <div className="wrap nav-inner">
           {/* LOGO */}
           <Link href="/" className="grit-logo" aria-label="GRIT CONSULTING accueil">
-            <span className="grit-logo-mark" aria-hidden="true">
-              <span className="grit-logo-orbit">
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                  <path d="M 50,10 A 40,40 0 1,1 10,50" fill="none" stroke="currentColor" strokeWidth="12" strokeLinecap="round" />
-                </svg>
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                  <path d="M 50,10 A 40,40 0 1,1 10,50" fill="none" stroke="currentColor" strokeWidth="12" strokeLinecap="round" />
-                </svg>
-                <span className="grit-logo-core" />
-              </span>
-            </span>
-            <span style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
-              <span style={{ display: "flex", alignItems: "center" }}>
-                <span className="grit-logo-word">GRIT</span>
-                <span className="grit-logo-dot">.</span>
-              </span>
-              <span className="grit-logo-tagline">Engineering Smart Infrastructure</span>
-            </span>
+            <Image src={logoImage} alt="GRIT" className="grit-logo-image" priority />
           </Link>
 
           {/* NAV DESKTOP */}
