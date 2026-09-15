@@ -9,19 +9,19 @@ import {
 
 const expertisesPreview = [
   {
-    number: "01", icon: Car, title: "Mobilité intelligente",
+    number: "01", slug: "mobilite-intelligente", icon: Car, title: "Mobilité intelligente",
     desc: "Péage Free Flow, ANPR/LPR, stationnement intelligent, gestion centralisée des recettes.",
   },
   {
-    number: "02", icon: Zap, title: "Infrastructures électriques",
+    number: "02", slug: "infrastructures-electriques", icon: Zap, title: "Infrastructures électriques",
     desc: "CFO/CFA, distribution BT, onduleurs, groupes électrogènes, photovoltaïque.",
   },
   {
-    number: "03", icon: Cpu, title: "Automatisation & Supervision",
+    number: "03", slug: "automatisation-supervision", icon: Cpu, title: "Automatisation & Supervision",
     desc: "PLC / SCADA, contrôle-commande, télégestion, monitoring et hypervision.",
   },
   {
-    number: "04", icon: ShieldCheck, title: "Sûreté & Sécurité incendie",
+    number: "04", slug: "surete-securite-incendie", icon: ShieldCheck, title: "Sûreté & Sécurité incendie",
     desc: "Vidéosurveillance IP, contrôle d'accès biométrique, détection incendie adressable.",
   },
 ];
@@ -206,17 +206,17 @@ export default function Home() {
           <div className="section-head center reveal">
             <span className="section-tag" style={{ justifyContent: "center" }}>Nos expertises</span>
             <h2>Des solutions technologiques conçues pour les infrastructures modernes</h2>
-            <p>Quatre domaines d'expertise complémentaires pour répondre à l'ensemble de vos enjeux.</p>
+            <p>Sept domaines d'expertise complémentaires pour répondre à l'ensemble de vos enjeux.</p>
           </div>
 
           <div className="expertise-grid reveal-stagger reveal">
-            {expertisesPreview.map(({ number, icon: Icon, title, desc }) => (
+            {expertisesPreview.map(({ number, slug, icon: Icon, title, desc }) => (
               <div className="expertise-card" key={title}>
                 <span className="card-number">{number}</span>
                 <div className="ic-wrap"><Icon size={22} /></div>
                 <h3>{title}</h3>
                 <p style={{ color: "var(--muted)", fontSize: "0.95rem", lineHeight: 1.65 }}>{desc}</p>
-                <Link href="/expertises" className="expertise-card-cta">
+                <Link href={`/expertises/${slug}`} className="expertise-card-cta">
                   Découvrir <ChevronRight size={14} />
                 </Link>
               </div>
@@ -273,9 +273,6 @@ export default function Home() {
           <div className="cta-dark-actions">
             <Link href="/contact" className="btn btn-red">
               Démarrer une discussion <ArrowRight size={16} />
-            </Link>
-            <Link href="/contact" className="btn btn-ghost">
-              Nous contacter
             </Link>
           </div>
         </div>

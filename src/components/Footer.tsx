@@ -5,6 +5,7 @@ const navItems = [
   { label: "Accueil", href: "/" },
   { label: "À propos", href: "/a-propos" },
   { label: "Expertises", href: "/expertises" },
+  { label: "Nos produits", href: "/produits" },
   { label: "Services", href: "/services" },
   { label: "Secteurs", href: "/secteurs" },
   { label: "Contact", href: "/contact" },
@@ -52,10 +53,13 @@ export default function Footer() {
         <div>
           <h4>Expertises</h4>
           <ul>
-            <li><Link href="/expertises">Mobilité intelligente</Link></li>
-            <li><Link href="/expertises">Infrastructures CFO/CFA</Link></li>
-            <li><Link href="/expertises">Automatisation & SCADA</Link></li>
-            <li><Link href="/expertises">Sûreté électronique</Link></li>
+            <li><Link href="/expertises/mobilite-intelligente">Mobilité intelligente</Link></li>
+            <li><Link href="/expertises/infrastructures-electriques">Infrastructures CFO/CFA</Link></li>
+            <li><Link href="/expertises/automatisation-supervision">Automatisation & SCADA</Link></li>
+            <li><Link href="/expertises/surete-securite-incendie">Sûreté électronique</Link></li>
+            <li><Link href="/expertises/developpement-applications">Développement d'applications</Link></li>
+            <li><Link href="/expertises/reseau-informatique">Réseau informatique</Link></li>
+            <li><Link href="/expertises/fournitures-materiels">Fournitures</Link></li>
           </ul>
         </div>
 
