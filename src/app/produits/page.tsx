@@ -5,8 +5,14 @@ const products = [
   {
     icon: Code2,
     title: "Logiciels & plateformes",
-    description: "Nous intégrons et déployons des logiciels métiers adaptés à vos opérations, notamment TMAX pour la gestion des péages et de la mobilité intelligente.",
-    items: ["TMAX et solutions de péage", "Applications de gestion et de supervision", "Tableaux de bord et plateformes métier"],
+    description: "Nous intégrons et déployons des logiciels métiers adaptés à vos opérations, pour piloter vos péages, parkings, stocks, ressources humaines et flottes.",
+    items: [
+      "TMAX : gestion des péages",
+      "GMAX : gestion des parkings",
+      "SMAX : gestion de stock",
+      "RH GRIT : gestion des ressources humaines",
+      "Gestion de flotte",
+    ],
   },
   {
     icon: Server,
