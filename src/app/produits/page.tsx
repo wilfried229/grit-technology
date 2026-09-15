@@ -9,9 +9,9 @@ const products = [
     items: [
       "TMAX : gestion des péages",
       "GMAX : gestion des parkings",
-      "SMAX : gestion de stock",
-      "RH GRIT : gestion des ressources humaines",
-      "Gestion de flotte",
+      "TELEXIA S-Manager : gestion de stock",
+      "TELEXIA HR-Manager : gestion des ressources humaines",
+      "TELEXIA F-Manager : gestion de flotte",
     ],
   },
   {
