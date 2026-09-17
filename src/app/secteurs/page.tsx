@@ -40,13 +40,13 @@ const secteursData = [
   {
     icon: Landmark,
     title: "Administrations & Bâtiments publics",
-    image: "/images/secteurs/administrations.jpg",
+    image: "/images/secteurs/turnstile.png",
     desc: "Gestion technique de bâtiment (GTB/GTC), sûreté électronique renforcée, contrôle d'accès biométrique haut débit et sécurisation des données d'infrastructures.",
   },
   {
     icon: PiggyBank,
     title: "Secteur Bancaire & Financier",
-    image: "/images/secteurs/banques.jpg",
+    image: "/images/secteurs/banques.png",
     desc: "Systèmes de sûreté anti-intrusion certifiés, surveillance vidéo avec analyse comportementale, contrôle d'accès aux zones de coffres et continuité d'énergie sans coupure.",
   },
   {
@@ -58,31 +58,31 @@ const secteursData = [
   {
     icon: Pickaxe,
     title: "Mines, Carrières & Énergie",
-    image: "/images/secteurs/mines.svg",
+    image: "/images/secteurs/mines.png",
     desc: "Automatismes durcis en environnements sévères, pesage dynamique de convois lourds, réseaux radio/fibre distants et sécurité périmétrique avancée.",
   },
   {
     icon: Hospital,
     title: "Hôpitaux & Secteur de la Santé",
-    image: "/images/secteurs/hopitaux.svg",
+    image: "/images/secteurs/hopitaux.png",
     desc: "Sécurisation de l'alimentation électrique critique des blocs opératoires, détection incendie de haute sensibilité, gestion d'accès aux zones stériles et pharmacie.",
   },
   {
     icon: Anchor,
     title: "Ports & Terminaux maritimes",
-    image: "/images/secteurs/ports.svg",
+    image: "/images/secteurs/ports.png",
     desc: "Contrôle des flux de camions et conteneurs, lecture OCR/ANPR sur portiques, supervision des accès aux quais et vidéosurveillance maritime.",
   },
   {
     icon: Plane,
     title: "Aéroports & Zones aéroportuaires",
-    image: "/images/secteurs/aeroports.svg",
+    image: "/images/secteurs/aeroports.png",
     desc: "Systèmes de sûreté conformes aux exigences OACI, guidage véhicule côté piste, distribution d'énergie sécurisée et monitoring centralisé.",
   },
   {
     icon: Radio,
     title: "Télécoms & Datacenters",
-    image: "/images/secteurs/telecoms.svg",
+    image: "/images/secteurs/telecoms.png",
     desc: "Alimentation continue (onduleurs, groupes, solaire hybride), climatisation de précision, surveillance environnementale et contrôle d'accès physique aux baies.",
   },
 ];
