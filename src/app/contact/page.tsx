@@ -192,7 +192,9 @@ export default function Contact() {
                 <h4>Siège Togo</h4>
                 <div className="contact-info-item">
                   <MapPin size={16} />
+                  <span>AGOE LOGOPE, Rue AGOE NYIVE </span>
                   <span>Lomé, Togo</span>
+                  
                 </div>
                 <div className="contact-info-item">
                   <Phone size={16} />
